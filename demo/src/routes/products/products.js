@@ -1,16 +1,27 @@
+const url = require('url');
 const fs = require('fs');
 const path = require('path');
 
-const productsRoute = ( request, response) => {
+const getId = url => {
+    const lastIndex = url.lastIndexOf('/');
+
+    if( lastIndex !== -1) {
+        return url.slice(lastIndex + 1);
+    }
+};
+
+const sendProducts = ( request, response) => {
     const filePath = path.join(__dirname, '../../', 'db', 'products', 'all-products.json');
-    const products = fs.readFileSync(filePath, 'utf8');
+    
+    const allProducts = fs.readFileSync(filePath, 'utf8');
 
-    response.writeHead(200, {
-        'Content-Type': 'application/json'
-    });
+    const parsedUrl = url.parse(request.url);
+    
+    const id = getId(parsedUrl.path);
+ 
 
-    response.end(products);
+
 
 };
 
-module.exports = productsRoute; 
+module.exports = sendProducts;
