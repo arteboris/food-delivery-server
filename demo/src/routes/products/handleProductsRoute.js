@@ -1,4 +1,4 @@
-const sendProducts = require('./products');
+const sendProducts = require('./sendProducts');
 const createProduct = require('./create-product');
 
 const handleProductsRoute = ( request, response ) => {

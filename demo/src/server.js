@@ -9,8 +9,7 @@ const getRouteHandler = require('./helpers/get-route-handler');
 const startServer = port => {
     const server = http.createServer((request, response) => {
         // Get route from the request
-        const parseUrl = url.parse(request.url);
-        
+        const parsedUrl = url.parse(request.url);
         // Get router function
         const funkRouter = getRouteHandler(router, parsedUrl.pathname) || router.default;
         logger(request, response, () => funkRouter(request, response));
