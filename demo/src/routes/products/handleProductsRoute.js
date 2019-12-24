@@ -1,5 +1,5 @@
 const sendProducts = require('./sendProducts');
-const createProduct = require('./create-product');
+const createProduct = require('./createProduct');
 
 const handleProductsRoute = ( request, response ) => {
     const reqMethod = request.method;
